@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="kkk" style="width:30px;height:30px;background:red;"></div>
+  <script>
+    var canvas = document.createElement('canvas');
+    var ctx = canvas.getContext('2d');
+    canvas.width = 512;
+    canvas.height = 480;
+    document.body.appendChild(canvas);
+
+    var lastTime;
+    function main() {
+      var now = Date.now();
+      var dt = (now - lastTime) / 1000.0;
+
+      update(dt);
+      render();
+
+      lastTime = now;
+      requestAnimationFrame(main);
+
+    }
+
+
+    (function () {
+      var resourceCache = {};
+      var loading = [];
+      var readyCallbacks = [];
+
+      function load(urlOrArr) {
+        if (urlOrArr instanceof Array) {
+          urlOrArr.forEach(function (url) {
+            _load(url);
+          });
+        } else {
+          _load(urlOrArr);
+        }
+      }
+
+      function _load(url) {
+        if (resourceCache[url]) {
+          return resourceCache[url];
+        } else {
+          
+        }
+      }
+
+    })
+    var img = new Image();
+    img.onload = function () {
+      startGame();
+    }
+    img.src = 
+
+
+    /*  */
+    /*  */
+    (function name() {
+      var start = null;
+      var element = document.getElementById('kkk');
+      element.style.position = 'absolute';
+
+      function step(timestamp) {
+        if (!start) start = timestamp;
+        var progress = timestamp - start;
+        element.style.left = Math.min(progress / 10, 200) + 'px';
+        if (progress < 1000) {
+          window.requestAnimationFrame(step);
+        }
+      }
+
+      window.requestAnimationFrame(step);
+    })()
+
+
+  </script>
+</body>
+</html>
