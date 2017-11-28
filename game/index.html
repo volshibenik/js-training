@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
+  <script src="res.js"></script>
+  <script src="sprite.js"></script>
 </head>
 <body>
   <div id="kkk" style="width:30px;height:30px;background:red;"></div>
@@ -27,57 +29,42 @@
       requestAnimationFrame(main);
 
     }
+    var player = {
+      pos: [0,0],
+      sprite: new Sprite ('img/sprites.png', [0,0], [39,39], 16, [0,1])
+    };
+    var bullets = [];
+    var enemies = [];
+    var explosions = [];
+
+    var lastFire = Date.now();
+    var gameTime = 0;
+    var isGameOver;
+    var terrainPattern;
+
+    var score = 0;
+    var scoreEl = document.querySelector('#score');
 
 
-    (function () {
-      var resourceCache = {};
-      var loading = [];
-      var readyCallbacks = [];
+    resources.load([
+        'img/terrain.png',
+        'img/hero.png'
+    ]);
 
-      function load(urlOrArr) {
-        if (urlOrArr instanceof Array) {
-          urlOrArr.forEach(function (url) {
-            _load(url);
-          });
-        } else {
-          _load(urlOrArr);
-        }
-      }
+    function init() {
+        terrainPattern = ctx.createPattern(resources.get('img/terrain.png'), 'repeat');
 
-      function _load(url) {
-        if (resourceCache[url]) {
-          return resourceCache[url];
-        } else {
-          
-        }
-      }
+        document.getElementById('play-again').addEventListener('click', function() {
+            reset();
+        });
 
-    })
-    var img = new Image();
-    img.onload = function () {
-      startGame();
+        reset();
+        lastTime = Date.now();
+        main();
     }
-    img.src = 
+    resources.onReady(init);
 
 
-    /*  */
-    /*  */
-    (function name() {
-      var start = null;
-      var element = document.getElementById('kkk');
-      element.style.position = 'absolute';
-
-      function step(timestamp) {
-        if (!start) start = timestamp;
-        var progress = timestamp - start;
-        element.style.left = Math.min(progress / 10, 200) + 'px';
-        if (progress < 1000) {
-          window.requestAnimationFrame(step);
-        }
-      }
-
-      window.requestAnimationFrame(step);
-    })()
 
 
   </script>
