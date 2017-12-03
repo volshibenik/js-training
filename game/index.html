@@ -5,88 +5,39 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
-  <script src="res.js"></script>
+  <script src="resources.js"></script>
   <script src="sprite.js"></script>
+  <script src="input.js"></script>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div id="kkk" style="width:30px;height:30px;background:red;"></div>
-  <script>
-    var canvas = document.createElement('canvas');
-    var ctx = canvas.getContext('2d');
-    canvas.width = 512;
-    canvas.height = 480;
-    document.body.appendChild(canvas);
+  <div id="game-over-overlay">
+  </div>
 
-    var lastTime;
-    function main() {
-      var now = Date.now();
-      var dt = (now - lastTime) / 1000.0;
+  <div id="game-over">
+    <h1>GAME OVER</h1>
+    <button id="play-again">Play Again</button>
+  </div>
 
-      update(dt);
-      render();
+  <div class="wrapper">
+    <div id="instructions">
+      <div>
+        move with <span class="key">arrows</span> or <span class="key">wasd</span>
+      </div>
+      <div>
+        shoot with <span class="key">space</span>
+      </div>
+    </div>
 
-      lastTime = now;
-      requestAnimationFrame(main);
-
-    }
-
-    function update(dt) {
-      gameTime += dt;
-
-      handleInput(dt);
-      updateEntities(dt);
-
-      if(Math.random() < 1 - Math.pow(.9, gameTime)) {
-        enemies.push({
-          pos: [canvas.width,
-                Math.random() * (canvas.height - 39)],
-          sprite: new Sprite('img/sprites.png', [0,78], [80,39],6,[0,1,2,3,2,1])
-        });
-      }
-      checkCollisions();
-      scoreEl.innerHTML = score;
-    };
-
-
-
-    var player = {
-      pos: [0,0],
-      sprite: new Sprite ('img/sprites.png', [0,0], [39,39], 16, [0,1])
-    };
-    var bullets = [];
-    var enemies = [];
-    var explosions = [];
-
-    var lastFire = Date.now();
-    var gameTime = 0;
-    var isGameOver;
-    var terrainPattern;
-
-    var score = 0;
-    var scoreEl = document.querySelector('#score');
-
-
-    resources.load([
-        'img/terrain.png',
-        'img/hero.png'
-    ]);
-
-    function init() {
-        terrainPattern = ctx.createPattern(resources.get('img/terrain.png'), 'repeat');
-
-        document.getElementById('play-again').addEventListener('click', function() {
-            reset();
-        });
-
-        reset();
-        lastTime = Date.now();
-        main();
-    }
-    resources.onReady(init);
+    <div id="score"></div>
+  </div>
 
 
 
 
-  </script>
+
+
+
+  <script src="app.js">  </script>
 </body>
 </html>
