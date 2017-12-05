@@ -44,6 +44,33 @@ var monsterCaught = 0;
 var keysDown = {};
 addEventListener('keydown', function(e){
 	keysDown[e.keyCode] = true;
+	switch (e.keyCode) {
+		case 38:
+			hero.y -= 40;break;
+		case 40:
+			hero.y += 40;break;
+		case 37:
+			hero.x -= 40;break;
+		case 39:
+			hero.x += 40;break;
+		default:
+			break;  //spec for waiting
+	}
+	var rand = Math.round(Math.random()*4);
+	console.log(rand);
+	switch (rand) {
+		case 0:
+			monster.y -= 40;break;
+		case 1:
+			monster.y += 40;break;
+		case 2:
+			monster.x -= 40;break;
+		case 3:
+			monster.x += 40;break;
+		default:
+			break;
+	}
+	//function to check if wall or border and move by 0 then and display message?
 }, false);
 
 addEventListener('keyup', function(e){
@@ -66,16 +93,18 @@ var reset = function() {
 
 var update = function(modifier) {
 	if (38 in keysDown) {
-		hero.y -= hero.speed * modifier;
+		/* hero.y -= hero.speed * modifier; */
+		/* hero.y += 4;
+		monster.y += 4; */
 	}
 	if (40 in keysDown) {
-		hero.y +=hero.speed * modifier;
+		/* hero.y +=hero.speed * modifier; */
 	}
 	if (37 in keysDown) {
-		hero.x -= hero.speed * modifier;
+		/* hero.x -= hero.speed * modifier; */
 	}
 	if (39 in keysDown) {
-		hero.x += hero.speed * modifier;
+		/* hero.x += hero.speed * modifier; */
 	}
 	
 	if (
